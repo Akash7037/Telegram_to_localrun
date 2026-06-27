@@ -1,0 +1,11 @@
+{
+  "note": "All configuration is currently managed via the .env file as per the project's design for security and simplicity.",
+  "example_commands": {
+    "open_browser_search": {"description": "Opens browser and searches", "params": {"query": ""}},
+    "system_sleep": {"description": "Puts the laptop to sleep"},
+    "system_shutdown": {"description": "Shuts down the laptop"},
+    "lock_screen": {"description": "Locks the screen"},
+    "open_app": {"description": "Opens a specified application", "params": {"app_name": ""}},
+    "close_app": {"description": "Closes a specified application", "params": {"app_name": ""}}
+  }
+}
