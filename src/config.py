@@ -17,9 +17,13 @@ class Config:
     POLLING_TIMEOUT = int(os.getenv("POLLING_TIMEOUT", 25))  # seconds
     
     # LLM settings
-    LLM_PROVIDER = os.getenv("LLM_PROVIDER", "openai")  # "openai" or "anthropic"
-    LLM_API_KEY = os.getenv("LLM_API_KEY")
-    LLM_MODEL = os.getenv("LLM_MODEL", "gpt-4o-mini" if LLM_PROVIDER == "openai" else "claude-3-haiku-20240307")
+    PRIMARY_LLM_PROVIDER = os.getenv("PRIMARY_LLM_PROVIDER", "google")  # "google", "openai", "anthropic", "openrouter"
+    PRIMARY_LLM_API_KEY = os.getenv("PRIMARY_LLM_API_KEY")
+    PRIMARY_LLM_MODEL = os.getenv("PRIMARY_LLM_MODEL", "gemini-pro")
+
+    FALLBACK_LLM_PROVIDER = os.getenv("FALLBACK_LLM_PROVIDER", "openrouter") # "google", "openai", "anthropic", "openrouter"
+    FALLBACK_LLM_API_KEY = os.getenv("FALLBACK_LLM_API_KEY")
+    FALLBACK_LLM_MODEL = os.getenv("FALLBACK_LLM_MODEL", "google/gemini-pro") # Example for OpenRouter
     
     # Logging settings
     LOG_FILE = os.getenv("LOG_FILE", "assistant.log")
@@ -33,8 +37,13 @@ class Config:
             missing.append("TELEGRAM_BOT_TOKEN")
         if not cls.WHITELISTED_CHAT_ID:
             missing.append("WHITELISTED_CHAT_ID")
-        if not cls.LLM_API_KEY:
-            missing.append("LLM_API_KEY")
         
+        if not cls.PRIMARY_LLM_API_KEY:
+            missing.append("PRIMARY_LLM_API_KEY")
+        
+        # Fallback LLM is optional, but if provider is set, key should be too
+        if cls.FALLBACK_LLM_PROVIDER and not cls.FALLBACK_LLM_API_KEY:
+            missing.append("FALLBACK_LLM_API_KEY")
+
         if missing:
-            raise ValueError(f"Missing required configuration: {', '.join(missing)}")
+            raise ValueError(f"Missing required configuration: {", ".join(missing)}")

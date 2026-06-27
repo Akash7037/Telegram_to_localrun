@@ -78,14 +78,23 @@ Follow these steps to get your Energy-Efficient Telegram AI Laptop Assistant up 
     # Your whitelisted Telegram Chat ID (integer)
     WHITELISTED_CHAT_ID=123456789 # Replace with your actual chat ID
 
-    # LLM Provider: "openai" or "anthropic"
-    LLM_PROVIDER="openai"
+    # Primary LLM Provider: "google", "openai", "anthropic", "openrouter"
+    PRIMARY_LLM_PROVIDER="google"
 
-    # LLM API Key
-    LLM_API_KEY="YOUR_LLM_API_KEY"
+    # Primary LLM API Key
+    PRIMARY_LLM_API_KEY="YOUR_GOOGLE_GEMINI_API_KEY"
 
-    # LLM Model (e.g., gpt-4o-mini for OpenAI, claude-3-haiku-20240307 for Anthropic)
-    LLM_MODEL="gpt-4o-mini"
+    # Primary LLM Model (e.g., gemini-pro for Google)
+    PRIMARY_LLM_MODEL="gemini-pro"
+
+    # Fallback LLM Provider: "google", "openai", "anthropic", "openrouter" (optional)
+    FALLBACK_LLM_PROVIDER="openrouter"
+
+    # Fallback LLM API Key (optional)
+    FALLBACK_LLM_API_KEY="YOUR_OPENROUTER_API_KEY"
+
+    # Fallback LLM Model (e.g., google/gemini-pro for OpenRouter)
+    FALLBACK_LLM_MODEL="google/gemini-pro"
 
     # ... other settings (power check intervals, logging) can be adjusted as needed
     ```
